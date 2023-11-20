@@ -1,10 +1,9 @@
 import useSWR from 'swr';
 import type { NextPage } from 'next';
-import getPosts from './api/getPosts';
-import { Post } from '@/types';
+import getProducts from './api/getProducts';
 
 const Home: NextPage = () => {
-  const { data: posts, error, isLoading } = useSWR('allPosts', getPosts);
+  const { data: products, error, isLoading } = useSWR('allProducts', getProducts);
 
   return (
     <div className="container mx-auto">
@@ -17,13 +16,13 @@ const Home: NextPage = () => {
         <h1>Loading Here</h1>
       ) : (
         <div>
-          {posts &&
+          {/* {posts &&
             posts.map((post: Post, index: number) => (
               <div key={index}>
                 <p>{post.title}</p>
                 <p>------------------------------</p>
               </div>
-            ))}
+            ))} */}
         </div>
       )}
     </div>

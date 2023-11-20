@@ -1,8 +1,13 @@
 import { z } from 'zod';
 
-export const PostSchema = z.object({
-  userId: z.number(),
+export const ProductSchema = z.object({
+  category: z.object({
+    // TODO: Could look at making this an enum.
+    name: z.string()
+  }),
+  description: z.string(),
   id: z.number(),
-  title: z.string(),
-  body: z.string(),
+  images: z.array(z.string()),
+  price: z.number(),
+  title: z.string()
 });
