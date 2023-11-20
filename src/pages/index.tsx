@@ -1,32 +1,31 @@
+import useSWR from 'swr';
 import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
-import { z } from 'zod';
-import { createZodFetcher } from "zod-fetch";
+import getPosts from './api/getPosts';
 import { Post } from '@/types';
-import { PostSchema } from '@/schemas';
-import usePosts from './api/getPosts';
 
 const Home: NextPage = () => {
-  const { data, error, isLoading } = usePosts();
-
-  const [posts, setPosts] = useState<Post[]>([])
-
-  console.log("data", data)
-  console.log("error", error)
-  console.log("isLoading", isLoading)
+  const { data: posts, error, isLoading } = useSWR('allPosts', getPosts);
 
   return (
     <div className="container mx-auto">
-      <h1>NextJS Starter</h1>
-      {error && (
-        <strong>Error Here</strong>
-      )}
-      {posts.map((post: Post, index: number) => (
-        <div key={index}>
-          <p>{post.title}</p>
-          <p>------------------------------</p>
+      <h1>Header</h1>
+      <h1>Marketplace</h1>
+      <h1>Hero</h1>
+      <h1>Product Tiles</h1>
+      {error && <h1>Error Here</h1>}
+      {isLoading ? (
+        <h1>Loading Here</h1>
+      ) : (
+        <div>
+          {posts &&
+            posts.map((post: Post, index: number) => (
+              <div key={index}>
+                <p>{post.title}</p>
+                <p>------------------------------</p>
+              </div>
+            ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };

@@ -1,6 +1,4 @@
-export type Post = {
-  userId: number,
-  id: number,
-  title: string
-  body: string
-}
+import { z } from 'zod';
+import { PostSchema } from './schemas';
+
+export type Post = z.input<typeof PostSchema>;
