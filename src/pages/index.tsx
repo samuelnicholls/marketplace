@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import type { NextPage } from 'next';
 import getProducts from './api/getProducts';
+import { Product } from '@/types';
 
 const Home: NextPage = () => {
   const { data: products, error, isLoading } = useSWR('allProducts', getProducts);
@@ -16,13 +17,13 @@ const Home: NextPage = () => {
         <h1>Loading Here</h1>
       ) : (
         <div>
-          {/* {posts &&
-            posts.map((post: Post, index: number) => (
+          {products &&
+            products.map((product: Product, index: number) => (
               <div key={index}>
-                <p>{post.title}</p>
+                <p>{product.title}</p>
                 <p>------------------------------</p>
               </div>
-            ))} */}
+            ))}
         </div>
       )}
     </div>

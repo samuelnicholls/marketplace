@@ -1,4 +1,4 @@
 import { z } from 'zod';
-import { PostSchema } from './schemas';
+import { ProductSchema } from './schemas';
 
-export type Post = z.input<typeof PostSchema>;
+export type Product = z.input<typeof ProductSchema>;
